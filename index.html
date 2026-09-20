@@ -1,90 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malak Digital | Software Engineer & Portfolio</title>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Keyframes for Animations matching original behavior */
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+        .animate-shine {
+            background-size: 200% auto;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes continuousFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-continuous-float {
+            animation: continuousFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes snakeBorderBeam {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .animate-snake-border::before {
+            content: '';
+            position: absolute;
+            inset: -150%;
+            background: conic-gradient(
+                from 0deg at 50% 50%,
+                transparent 0deg,
+                transparent 250deg,
+                rgba(2, 132, 199, 0.3) 290deg,
+                #ffffff 330deg,
+                #38bdf8 345deg,
+                rgba(2, 132, 199, 0.3) 355deg,
+                transparent 360deg
+            );
+            animation: snakeBorderBeam 6s linear infinite;
+            z-index: 1;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans overflow-x-hidden">
 
     <!-- Header / Navbar -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo-container">
-                <img src="assets/images/3cb3f75d8d31c1c97cdcbb4ef5bde777.jpg" alt="Malak Digital Logo" class="brand-logo-img">
-                <div class="logo-text">
-                    <span class="logo-title">Malak Digital</span>
-                    <span class="logo-subtitle-nav">Software Engineer</span>
+    <header class="navbar sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="container mx-auto px-5 max-w-7xl flex justify-between items-center py-3.5">
+            <a href="#" class="logo-container flex items-center gap-3.5 no-underline">
+                <img src="assets/images/3cb3f75d8d31c1c97cdcbb4ef5bde777.jpg" alt="Malak Digital Logo" class="w-[75px] h-[75px] max-w-none object-contain rounded-xl relative top-1">
+                <div class="logo-text flex flex-col">
+                    <span class="logo-title text-[20px] font-extrabold text-slate-900 tracking-wide">Malak <span class="text-sky-600">Digital</span></span>
+                    <span class="logo-subtitle-nav text-xs text-slate-500 font-semibold">Software Engineer</span>
                 </div>
             </a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+            <button class="menu-toggle md:hidden bg-transparent border-none text-2xl text-slate-900 cursor-pointer" id="menuToggle" aria-label="Toggle Menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <nav class="nav-links" id="navLinks">
-                <a href="#home">Home</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#services">Services</a>
-                <a href="#contact">Contact</a>
+            <nav class="nav-links hidden md:flex items-center gap-4 transition-all duration-300" id="navLinks">
+                <a href="#home" class="text-sky-800 hover:bg-slate-100 hover:text-sky-600 font-bold text-base px-4 py-2 rounded-lg transition-all duration-300 no-underline">Home</a>
+                <a href="#skills" class="text-sky-800 hover:bg-slate-100 hover:text-sky-600 font-bold text-base px-4 py-2 rounded-lg transition-all duration-300 no-underline">Skills</a>
+                <a href="#projects" class="text-sky-800 hover:bg-slate-100 hover:text-sky-600 font-bold text-base px-4 py-2 rounded-lg transition-all duration-300 no-underline">Projects</a>
+                <a href="#services" class="text-sky-800 hover:bg-slate-100 hover:text-sky-600 font-bold text-base px-4 py-2 rounded-lg transition-all duration-300 no-underline">Services</a>
+                <a href="#contact" class="text-sky-800 hover:bg-slate-100 hover:text-sky-600 font-bold text-base px-4 py-2 rounded-lg transition-all duration-300 no-underline">Contact</a>
             </nav>
         </div>
     </header>
 
     <!-- Combined Hero & About Section -->
-    <section id="home" class="hero-about-combined">
-        <div class="container hero-container-grid">
+    <section id="home" class="hero-about-combined py-[70px] bg-gradient-to-br from-slate-50 to-sky-50 border-b border-slate-200">
+        <div class="container mx-auto px-5 max-w-7xl grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
             <div class="hero-text-content">
-                <div class="hero-badge-pill">
+                <div class="hero-badge-pill inline-flex items-center gap-2 bg-sky-100 text-sky-600 text-xs font-bold px-3.5 py-1.5 rounded-full mb-5 shadow-sm">
                     <i class="fa-solid fa-code"></i> Software Engineer & Founder
                 </div>
-                <h1 class="shimmer-text">Hi, I'm Malak.<br><span>Founder of Malak Digital.</span></h1>
-                <p class="hero-desc">
+                <h1 class="shimmer-text text-[38px] font-extrabold leading-tight mb-5 text-slate-900 bg-gradient-to-r from-slate-900 via-sky-400 to-slate-900 bg-clip-text text-transparent animate-shine">
+                    Hi, I'm Malak.<br><span class="bg-gradient-to-r from-sky-600 via-sky-300 to-sky-600 bg-clip-text text-transparent animate-shine">Founder of Malak Digital.</span>
+                </h1>
+                <p class="hero-desc text-slate-600 text-[15px] leading-relaxed mb-6">
                 Software Engineer & Founder of <strong>Malak Digital</strong>. I architect sustainable digital ecosystems by combining advanced web and mobile development (Laravel & Flutter), smart database design, and professional IT hardware & network solutions to turn complex ideas into reality.
                 </p>
                 
-                <div class="about-meta">
-                    <a href="mailto:malak.daraan.dev@gmail.com" class="meta-box link-box">
-                        <i class="fa-solid fa-envelope"><span>  malak.daraan.dev@gmail.com</span></i>
+                <div class="about-meta flex flex-col sm:flex-row gap-5 mb-6">
+                    <a href="mailto:malak.daraan.dev@gmail.com" class="meta-box link-box flex items-center gap-2 text-[13px] font-semibold text-slate-900 no-underline hover:opacity-80 transition-opacity">
+                        <i class="fa-solid fa-envelope text-sky-600"><span class="font-sans not-italic">  malak.daraan.dev@gmail.com</span></i>
                     </a>
 
-                    <a href="tel: + 967 774 774 900" class="meta-box link-box">
-                        <i class="fa-solid fa-phone"><span> +967 774 774 900</span></i>
+                    <a href="tel:+967774774900" class="meta-box link-box flex items-center gap-2 text-[13px] font-semibold text-slate-900 no-underline hover:opacity-80 transition-opacity">
+                        <i class="fa-solid fa-phone text-sky-600"><span class="font-sans not-italic"> +967 774 774 900</span></i>
                     </a>
 
-                    <div class="meta-box">
-                        <i class="fa-solid fa-location-dot"><span>    Sana'a, Yemen</span></i>
+                    <div class="meta-box flex items-center gap-2 text-[13px] font-semibold text-slate-900">
+                        <i class="fa-solid fa-location-dot text-sky-600"><span class="font-sans not-italic">    Sana'a, Yemen</span></i>
                     </div>
-                    <!-- <div class="meta-box">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>malak.daraan.dev@gmail.com</span>
-                    </div>
-                    <div class="meta-box">
-                        <i class="fa-solid fa-phone"></i>
-                        <span>+967 774 774 900</span>
-                    </div>
-                    <div class="meta-box">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Sana'a, Yemen</span>
-                    </div> -->
                 </div>
 
-                <div class="hero-btns">
-                    <a href="#projects" class="btn-cyan">View My Work <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="#contact" class="btn-outline">Contact Me</a>
+                <div class="hero-btns flex flex-col sm:flex-row gap-3.5">
+                    <a href="#projects" class="btn-cyan bg-sky-600 hover:bg-sky-700 text-white px-7 py-3 rounded-lg font-semibold inline-flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-sky-600/25 hover:-translate-y-0.5 no-underline">View My Work <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn-outline bg-transparent text-slate-900 border-2 border-slate-300 hover:border-sky-600 hover:text-sky-600 px-[26px] py-2.5 rounded-lg font-semibold transition-all duration-300 text-center no-underline">Contact Me</a>
                 </div>
             </div>
 
             <!-- Enhanced Floating & Framed Image -->
-            <div class="hero-image-content">
-                <div class="floating-frame-wrapper">
-                    <div class="glow-backdrop"></div>
-                    <div class="personal-profile-img">
-                        <img src="assets/images/proooooof.jpg" alt="Eng. Malak Profile">
+            <div class="hero-image-content flex justify-center items-center relative">
+                <div class="floating-frame-wrapper relative p-1 bg-transparent rounded-[28px] shadow-md animate-continuous-float overflow-hidden animate-snake-border">
+                    <div class="absolute inset-1 bg-white rounded-[24px] z-[2]"></div>
+                    <div class="personal-profile-img relative w-full max-w-[380px] rounded-[22px] overflow-hidden bg-white z-[3]">
+                        <img src="assets/images/proooooof.jpg" alt="Eng. Malak Profile" class="w-full h-auto block transition-transform duration-500 hover:scale-105">
                     </div>
                 </div>
             </div>
@@ -92,223 +136,203 @@
     </section>
 
     <!-- Categories / Skills Section -->
-    <section id="skills" class="categories-section">
-        <div class="container">
-            <div class="section-header" style="margin-bottom: 25px;">
+    <section id="skills" class="categories-section py-[70px]">
+        <div class="container mx-auto px-5 max-w-7xl">
+            <div class="section-header mb-[25px] flex justify-between items-end">
                 <div>
-                    <span class="section-tag">MY EXPERTISE</span>
-                    <h2>Skills & Capabilities</h2>
+                    <span class="section-tag text-sky-600 text-[11px] tracking-[1.5px] uppercase block mb-1.5 font-bold">MY EXPERTISE</span>
+                    <h2 class="text-[26px] font-extrabold text-slate-900">Skills & Capabilities</h2>
                 </div>
             </div>
-            <div class="categories-grid">
-                <!-- Skill 1: Web Development -->
-                <div class="cat-item ">
-                    <div class="skill-icon-wrap">
-                        <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <div class="categories-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Skill 1 -->
+                <div class="cat-item bg-white border border-slate-200 p-[30px_20px] rounded-2xl text-center cursor-pointer transition-all duration-300 shadow-sm hover:bg-sky-50 hover:border-sky-600 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-sky-600/5 group">
+                    <div class="skill-icon-wrap w-[55px] h-[55px] mx-auto mb-[18px] bg-sky-100 rounded-[14px] flex items-center justify-center transition-all duration-300 group-hover:bg-sky-600">
+                        <svg class="skill-svg w-[26px] h-[26px] stroke-sky-600 transition-colors duration-300 group-hover:stroke-white" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                     </div>
-                    <span>Web Development</span>
-                    <small>Laravel & PHP</small>
+                    <span class="block text-[15px] font-bold mb-1.5 text-slate-900">Web Development</span>
+                    <small class="text-slate-500 text-xs font-medium">Laravel & PHP</small>
                 </div>
 
-                <!-- Skill 2: Mobile Apps -->
-                <div class="cat-item">
-                    <div class="skill-icon-wrap">
-                        <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                <!-- Skill 2 -->
+                <div class="cat-item bg-white border border-slate-200 p-[30px_20px] rounded-2xl text-center cursor-pointer transition-all duration-300 shadow-sm hover:bg-sky-50 hover:border-sky-600 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-sky-600/5 group">
+                    <div class="skill-icon-wrap w-[55px] h-[55px] mx-auto mb-[18px] bg-sky-100 rounded-[14px] flex items-center justify-center transition-all duration-300 group-hover:bg-sky-600">
+                        <svg class="skill-svg w-[26px] h-[26px] stroke-sky-600 transition-colors duration-300 group-hover:stroke-white" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
                     </div>
-                    <span>Mobile Apps</span>
-                    <small>Flutter & Dart</small>
+                    <span class="block text-[15px] font-bold mb-1.5 text-slate-900">Mobile Apps</span>
+                    <small class="text-slate-500 text-xs font-medium">Flutter & Dart</small>
                 </div>
 
-                <!-- Skill 3: Databases -->
-                <div class="cat-item">
-                    <div class="skill-icon-wrap">
-                        <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                <!-- Skill 3 -->
+                <div class="cat-item bg-white border border-slate-200 p-[30px_20px] rounded-2xl text-center cursor-pointer transition-all duration-300 shadow-sm hover:bg-sky-50 hover:border-sky-600 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-sky-600/5 group">
+                    <div class="skill-icon-wrap w-[55px] h-[55px] mx-auto mb-[18px] bg-sky-100 rounded-[14px] flex items-center justify-center transition-all duration-300 group-hover:bg-sky-600">
+                        <svg class="skill-svg w-[26px] h-[26px] stroke-sky-600 transition-colors duration-300 group-hover:stroke-white" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
                     </div>
-                    <span>Databases</span>
-                    <small>MySQL & Design</small>
+                    <span class="block text-[15px] font-bold mb-1.5 text-slate-900">Databases</span>
+                    <small class="text-slate-500 text-xs font-medium">MySQL & Design</small>
                 </div>
 
-                <!-- Skill 4: IT & Maintenance -->
-                <div class="cat-item">
-                    <div class="skill-icon-wrap">
-                        <svg class="skill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                <!-- Skill 4 -->
+                <div class="cat-item bg-white border border-slate-200 p-[30px_20px] rounded-2xl text-center cursor-pointer transition-all duration-300 shadow-sm hover:bg-sky-50 hover:border-sky-600 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-sky-600/5 group">
+                    <div class="skill-icon-wrap w-[55px] h-[55px] mx-auto mb-[18px] bg-sky-100 rounded-[14px] flex items-center justify-center transition-all duration-300 group-hover:bg-sky-600">
+                        <svg class="skill-svg w-[26px] h-[26px] stroke-sky-600 transition-colors duration-300 group-hover:stroke-white" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                     </div>
-                    <span>IT & Maintenance</span>
-                    <small>Hardware & Systems</small>
+                    <span class="block text-[15px] font-bold mb-1.5 text-slate-900">IT & Maintenance</span>
+                    <small class="text-slate-500 text-xs font-medium">Hardware & Systems</small>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="top-rated">
-        <div class="container">
-            <div class="section-header">
+    <section id="projects" class="top-rated py-[40px] pb-[60px]">
+        <div class="container mx-auto px-5 max-w-7xl">
+            <div class="section-header flex justify-between items-end mb-[30px]">
                 <div>
-                    <span class="section-tag">PORTFOLIO</span>
-                    <h2>Featured Projects</h2>
+                    <span class="section-tag text-sky-600 text-[11px] tracking-[1.5px] uppercase block mb-1.5 font-bold">PORTFOLIO</span>
+                    <h2 class="text-[26px] font-extrabold text-slate-900">Featured Projects</h2>
                 </div>
-                <a href="#" class="view-all">All Works</a>
+                <a href="#" class="view-all text-sky-600 no-underline text-[13px] font-semibold hover:opacity-80 transition-opacity">All Works</a>
             </div>
 
-            <div class="cars-grid">
+            <div class="cars-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 <!-- Project 1 -->
-                <div class="car-card">
-                    <span class="car-badge">Graduation Project</span>
-                    <div class="car-img">
-                        <img src="assets/images/umrp.jpg" alt="Medical Records Platform">
+                <div class="car-card bg-white border border-slate-200 rounded-2xl p-5 relative transition-all duration-300 shadow-sm hover:border-sky-600 hover:-translate-y-2 hover:shadow-2xl group">
+                    <span class="car-badge absolute top-5 left-5 bg-sky-100 text-sky-600 text-[10px] px-2.5 py-1 rounded-full font-bold z-10">Graduation Project</span>
+                    <div class="car-img h-[160px] my-5 flex items-center justify-center rounded-[10px] overflow-hidden">
+                        <img src="assets/images/umrp.jpg" alt="Medical Records Platform" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="car-details">
-                        <h4>Unified Health Records Platform</h4>
-                        <div class="car-price">98% <span>Score</span></div>
+                    <div class="car-details flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                        <h4 class="text-[15px] font-bold text-slate-900">Unified Health Records Platform</h4>
+                        <div class="car-price text-[15px] font-extrabold text-sky-600">98% <span class="text-[11px] text-slate-500 font-normal">Score</span></div>
                     </div>
-                    <div class="car-specs">
-                        <span><i class="fa-solid fa-code"></i> PHP / MySQL</span>
-                        <span><i class="fa-solid fa-check"></i> Completed</span>
+                    <div class="car-specs flex justify-between text-[11px] text-slate-500 font-medium">
+                        <span><i class="fa-solid fa-code text-sky-600 mr-1"></i> PHP / MySQL</span>
+                        <span><i class="fa-solid fa-check text-sky-600 mr-1"></i> Completed</span>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="car-card">
-                    <span class="car-badge">Mobile App</span>
-                    <div class="car-img">
-                        <img src="assets/images/buildings.jpg" alt="Tenant Management App">
+                <div class="car-card bg-white border border-slate-200 rounded-2xl p-5 relative transition-all duration-300 shadow-sm hover:border-sky-600 hover:-translate-y-2 hover:shadow-2xl group">
+                    <span class="car-badge absolute top-5 left-5 bg-sky-100 text-sky-600 text-[10px] px-2.5 py-1 rounded-full font-bold z-10">Mobile App</span>
+                    <div class="car-img h-[160px] my-5 flex items-center justify-center rounded-[10px] overflow-hidden">
+                        <img src="assets/images/buildings.jpg" alt="Tenant Management App" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="car-details">
-                        <h4>Building Management</h4>
-                        <div class="car-price">Flutter <span>App</span></div>
+                    <div class="car-details flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                        <h4 class="text-[15px] font-bold text-slate-900">Building Management</h4>
+                        <div class="car-price text-[15px] font-extrabold text-sky-600">Flutter <span class="text-[11px] text-slate-500 font-normal">App</span></div>
                     </div>
-                    <div class="car-specs">
-                        <span><i class="fa-solid fa-mobile"></i> Dart</span>
-                        <span><i class="fa-solid fa-check"></i> Mobile</span>
+                    <div class="car-specs flex justify-between text-[11px] text-slate-500 font-medium">
+                        <span><i class="fa-solid fa-mobile text-sky-600 mr-1"></i> Dart</span>
+                        <span><i class="fa-solid fa-check text-sky-600 mr-1"></i> Mobile</span>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="car-card">
-                    <span class="car-badge electric">Web System</span>
-                    <div class="car-img">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80" alt="E-Commerce Solution">
+                <div class="car-card bg-white border border-slate-200 rounded-2xl p-5 relative transition-all duration-300 shadow-sm hover:border-sky-600 hover:-translate-y-2 hover:shadow-2xl group">
+                    <span class="car-badge electric absolute top-5 left-5 bg-emerald-100 text-emerald-600 text-[10px] px-2.5 py-1 rounded-full font-bold z-10">Web System</span>
+                    <div class="car-img h-[160px] my-5 flex items-center justify-center rounded-[10px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80" alt="E-Commerce Solution" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="car-details">
-                        <h4>Enterprise Web App</h4>
-                        <div class="car-price">Laravel <span>Framework</span></div>
+                    <div class="car-details flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                        <h4 class="text-[15px] font-bold text-slate-900">Enterprise Web App</h4>
+                        <div class="car-price text-[15px] font-extrabold text-sky-600">Laravel <span class="text-[11px] text-slate-500 font-normal">Framework</span></div>
                     </div>
-                    <div class="car-specs">
-                        <span><i class="fa-solid fa-server"></i> Backend</span>
-                        <span><i class="fa-solid fa-shield">Secure</i></span>
+                    <div class="car-specs flex justify-between text-[11px] text-slate-500 font-medium">
+                        <span><i class="fa-solid fa-server text-sky-600 mr-1"></i> Backend</span>
+                        <span><i class="fa-solid fa-shield text-sky-600 mr-1"></i>Secure</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section (Maintenance & Networks) -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="section-header">
-                <div>
-                    <span class="section-tag">WHAT I OFFER</span>
-                    <h2>Computer Maintenance & Networks</h2>
-                </div>
+    <!-- Services Section -->
+    <section id="services" class="services-section py-[60px] bg-white border-t border-slate-200">
+        <div class="container mx-auto px-5 max-w-7xl">
+            <div class="section-header mb-[30px]">
+                <span class="section-tag text-sky-600 text-[11px] tracking-[1.5px] uppercase block mb-1.5 font-bold">WHAT I OFFER</span>
+                <h2 class="text-[26px] font-extrabold text-slate-900">Computer Maintenance & Networks</h2>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fa-solid fa-computer"></i>
-                    <h3>Hardware Maintenance</h3>
-                    <p>PC & Laptop diagnostics, BIOS configuration, hardware upgrades, and performance tuning.</p>
+            <div class="services-grid grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="service-card bg-slate-50 border border-slate-200 p-[30px] rounded-2xl text-center transition-all duration-300 hover:border-sky-600 hover:-translate-y-1.5 hover:bg-white hover:shadow-xl">
+                    <i class="fa-solid fa-computer text-[32px] text-sky-600 mb-4 block"></i>
+                    <h3 class="text-[18px] font-bold text-slate-900 mb-2.5">Hardware Maintenance</h3>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">PC & Laptop diagnostics, BIOS configuration, hardware upgrades, and performance tuning.</p>
                 </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-network-wired"></i>
-                    <h3>Network Solutions</h3>
-                    <p>Network setup, system configurations, and reliable troubleshooting for seamless connectivity.</p>
+                <div class="service-card bg-slate-50 border border-slate-200 p-[30px] rounded-2xl text-center transition-all duration-300 hover:border-sky-600 hover:-translate-y-1.5 hover:bg-white hover:shadow-xl">
+                    <i class="fa-solid fa-network-wired text-[32px] text-sky-600 mb-4 block"></i>
+                    <h3 class="text-[18px] font-bold text-slate-900 mb-2.5">Network Solutions</h3>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">Network setup, system configurations, and reliable troubleshooting for seamless connectivity.</p>
                 </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-hard-drive"></i>
-                    <h3>OS & Systems Setup</h3>
-                    <p>Professional operating system installation, driver management, and secure data backups.</p>
+                <div class="service-card bg-slate-50 border border-slate-200 p-[30px] rounded-2xl text-center transition-all duration-300 hover:border-sky-600 hover:-translate-y-1.5 hover:bg-white hover:shadow-xl">
+                    <i class="fa-solid fa-hard-drive text-[32px] text-sky-600 mb-4 block"></i>
+                    <h3 class="text-[18px] font-bold text-slate-900 mb-2.5">OS & Systems Setup</h3>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">Professional operating system installation, driver management, and secure data backups.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Redesigned Modern Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="section-header text-center">
-                <span class="section-tag">GET IN TOUCH</span>
-                <h2>Let's Build Something Amazing Together</h2>
-                <p>Have a project, system architecture, or maintenance request? Drop a message and let's discuss.</p>
+    <!-- Modern Contact Section -->
+    <section id="contact" class="contact-section py-[80px] bg-gradient-to-br from-slate-50 to-sky-50 border-t border-slate-200">
+        <div class="container mx-auto px-5 max-w-7xl">
+            <div class="section-header text-center mb-10">
+                <span class="section-tag text-sky-600 text-[11px] tracking-[1.5px] uppercase block mb-1.5 font-bold">GET IN TOUCH</span>
+                <h2 class="text-[26px] font-extrabold text-slate-900 mb-2">Let's Build Something Amazing Together</h2>
+                <p class="text-slate-600 text-sm">Have a project, system architecture, or maintenance request? Drop a message and let's discuss.</p>
             </div>
             
-            <div class="contact-grid-wrapper">
-                <!-- Contact Info Cards Side -->
-                <!-- <div class="contact-info-side">
-                    <a href="mailto:malak.daraan.dev@gmail.com" class="contact-card-item link-box"></a>
-                    <div class="contact-card-item">
-                        <div class="contact-icon-wrap">
+            <div class="contact-grid-wrapper grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-[30px] max-w-[1000px] mx-auto items-stretch">
+                <!-- Contact Info Side -->
+                <div class="contact-info-side flex flex-col gap-5 justify-center">
+                    <a href="mailto:malak.daraan.dev@gmail.com" class="contact-card-item bg-white border border-slate-200 p-5 rounded-2xl flex items-center gap-4 shadow-sm transition-all duration-300 hover:border-sky-600 hover:-translate-y-1 hover:shadow-lg no-underline">
+                        <div class="contact-icon-wrap w-[45px] h-[45px] bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-lg flex-shrink-0">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
                         <div>
-                            <h4>Email Me</h4>
-                            <span>malak.daraan.dev@gmail.com</span>
+                            <h4 class="text-[14px] text-slate-500 font-semibold mb-0.5">Email Me</h4>
+                            <span class="text-[15px] text-slate-900 font-bold">malak.daraan.dev@gmail.com</span>
                         </div>
-                    </div>
-                    <div class="contact-card-item">
-                        <div class="contact-icon-wrap">
+                    </a>
+                    
+                    <a href="tel:+967774774900" class="contact-card-item bg-white border border-slate-200 p-5 rounded-2xl flex items-center gap-4 shadow-sm transition-all duration-300 hover:border-sky-600 hover:-translate-y-1 hover:shadow-lg no-underline">
+                        <div class="contact-icon-wrap w-[45px] h-[45px] bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-lg flex-shrink-0">
                             <i class="fa-solid fa-phone"></i>
                         </div>
                         <div>
-                            <h4>Call / WhatsApp</h4>
-                            <span>+967 774 774 900</span>
-                        </div>
-                    </div> -->
-                    <div class="contact-info-side">
-                    <a href="mailto:malak.daraan.dev@gmail.com" class="contact-card-item link-box">
-                        <div class="contact-icon-wrap">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email Me</h4>
-                            <span>malak.daraan.dev@gmail.com</span>
+                            <h4 class="text-[14px] text-slate-500 font-semibold mb-0.5">Call / WhatsApp</h4>
+                            <span class="text-[15px] text-slate-900 font-bold">+967 774 774 900</span>
                         </div>
                     </a>
-                    <a href="tel:+967774774900" class="contact-card-item link-box">
-                        <div class="contact-icon-wrap">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div>
-                            <h4>Call / WhatsApp</h4>
-                            <span>+967 774 774 900</span>
-                        </div>
-                    </a>
-                    <div class="contact-card-item">
-                        <div class="contact-icon-wrap">
+
+                    <div class="contact-card-item bg-white border border-slate-200 p-5 rounded-2xl flex items-center gap-4 shadow-sm transition-all duration-300">
+                        <div class="contact-icon-wrap w-[45px] h-[45px] bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-lg flex-shrink-0">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
                         <div>
-                            <h4>Location</h4>
-                            <span>Sana'a, Yemen</span>
+                            <h4 class="text-[14px] text-slate-500 font-semibold mb-0.5">Location</h4>
+                            <span class="text-[15px] text-slate-900 font-bold">Sana'a, Yemen</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Contact Form Side -->
-                <div class="contact-form-side">
-                    <form class="contact-form" action="#" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" placeholder="Enter your full name" required>
+                <div class="contact-form-side bg-white border border-slate-200 p-[35px] rounded-[20px] shadow-xl">
+                    <form class="contact-form flex flex-col gap-5" action="#" method="POST">
+                        <div class="form-group flex flex-col gap-1.5">
+                            <label for="name" class="text-[13px] font-semibold text-slate-900">Your Name</label>
+                            <input type="text" id="name" placeholder="Enter your full name" required class="p-3 border border-slate-300 rounded-lg text-sm outline-none transition-colors bg-slate-50 text-slate-900 focus:border-sky-600 focus:bg-white">
                         </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" placeholder="Enter your email address" required>
+                        <div class="form-group flex flex-col gap-1.5">
+                            <label for="email" class="text-[13px] font-semibold text-slate-900">Your Email</label>
+                            <input type="email" id="email" placeholder="Enter your email address" required class="p-3 border border-slate-300 rounded-lg text-sm outline-none transition-colors bg-slate-50 text-slate-900 focus:border-sky-600 focus:bg-white">
                         </div>
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" rows="4" placeholder="Write your message or project details here..." required></textarea>
+                        <div class="form-group flex flex-col gap-1.5">
+                            <label for="message" class="text-[13px] font-semibold text-slate-900">Your Message</label>
+                            <textarea id="message" rows="4" placeholder="Write your message or project details here..." required class="p-3 border border-slate-300 rounded-lg text-sm outline-none transition-colors bg-slate-50 text-slate-900 focus:border-sky-600 focus:bg-white"></textarea>
                         </div>
-                        <button type="submit" class="btn-cyan btn-full">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+                        <button type="submit" class="btn-cyan btn-full w-full bg-sky-600 hover:bg-sky-700 text-white py-3.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-sky-600/25">Send Message <i class="fa-solid fa-paper-plane"></i></button>
                     </form>
                 </div>
             </div>
@@ -316,33 +340,34 @@
     </section>
 
     <!-- Professional Footer -->
-    <footer class="footer">
-        <div class="container footer-grid">
+    <footer class="footer bg-slate-900 text-slate-400 py-[50px] pb-5 border-t border-slate-800">
+        <div class="container mx-auto px-5 max-w-7xl grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10 mb-10">
             <div class="footer-col">
-                <div class="footer-logo">Malak Digital<span>.</span></div>
-                <p>Professional Software Engineering, Web & Mobile Development solutions.</p>
+                <div class="footer-logo text-[20px] font-extrabold text-white mb-2.5">Malak Digital<span class="text-sky-600">.</span></div>
+                <p class="text-[13px] leading-relaxed mb-2.5">Professional Software Engineering, Web & Mobile Development solutions.</p>
             </div>
             <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#services">Services</a></li>
+                <h4 class="text-white text-[15px] font-bold mb-4">Quick Links</h4>
+                <ul class="list-none flex flex-col gap-2">
+                    <li><a href="#home" class="text-slate-400 hover:text-sky-400 text-[13px] transition-colors no-underline">Home</a></li>
+                    <li><a href="#skills" class="text-slate-400 hover:text-sky-400 text-[13px] transition-colors no-underline">Skills</a></li>
+                    <li><a href="#projects" class="text-slate-400 hover:text-sky-400 text-[13px] transition-colors no-underline">Projects</a></li>
+                    <li><a href="#services" class="text-slate-400 hover:text-sky-400 text-[13px] transition-colors no-underline">Services</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contact Info</h4>
-                <p><i class="fa-solid fa-envelope"></i> malak.daraan.dev@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> +967 774 774 900</p>
-                <p><i class="fa-solid fa-location-dot"></i> Sana'a, Yemen</p>
+                <h4 class="text-white text-[15px] font-bold mb-4">Contact Info</h4>
+                <p class="text-[13px] mb-2"><i class="fa-solid fa-envelope text-sky-500 mr-1.5"></i> malak.daraan.dev@gmail.com</p>
+                <p class="text-[13px] mb-2"><i class="fa-solid fa-phone text-sky-500 mr-1.5"></i> +967 774 774 900</p>
+                <p class="text-[13px] mb-2"><i class="fa-solid fa-location-dot text-sky-500 mr-1.5"></i> Sana'a, Yemen</p>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="footer-bottom text-center pt-5 border-t border-slate-800 text-xs">
             <p>&copy; 2026 Malak Digital. All rights reserved. Software Engineer & Developer.</p>
         </div>
     </footer>
-    <script src="javascript/prof.js"></script>
 
+    <!-- JavaScript for Mobile Menu Toggle & Smooth Dropdown -->
+    <script src="javascript/prof.js"></script>
 </body>
 </html>
